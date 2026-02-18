@@ -10,13 +10,12 @@
     "test:all": "./test/run-tests.sh",
     "test:working": "./test/run-tests.sh",
     "test:core": "npm run test:permissions && npm run test:integration && npm run test:runtime && npm run test:syntax",
-    "test:features": "npm run test:diff && npm run test:session && npm run test:preview && npm run test:telegram",
+    "test:features": "npm run test:diff && npm run test:session && npm run test:telegram",
     "test:permissions": "node test/test-permissions.js",
     "test:integration": "node test/test-integration.js",
     "test:runtime": "node test/test-runtime.js",
     "test:diff": "node test/test-diff-generation.js",
     "test:session": "node test/test-session-management.js",
-    "test:preview": "node test/test-preview-diff.js",
     "test:telegram": "node test/test-telegram-integration.js",
     "test:hooks": "echo 'Hook integration tests are temporarily disabled due to 8 failing tests' && node test/test-hook-integration.js",
     "test:hooks:force": "node test/test-hook-integration.js",
@@ -62,8 +61,6 @@
     "examples/**/*",
     "scripts/**/*",
     "test/**/*",
-    "generate-and-read-diff.js",
-    "send-final-version.js",
     "README.md",
     "INTEGRATION.md",
     "LICENSE",
@@ -75,12 +72,5 @@
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {
-    "diff2html": "^3.4.52",
-    "imagemin": "^9.0.1",
-    "imagemin-pngquant": "^10.0.0",
-    "pngquant": "^4.2.0",
-    "puppeteer-core": "^23.9.0",
-    "sharp": "^0.34.3"
-  }
+  "dependencies": {}
 }
