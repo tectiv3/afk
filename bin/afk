@@ -74,7 +74,10 @@ function isInstalled() {
   if (fs.existsSync(userSettingsPath)) {
     try {
       const settings = JSON.parse(fs.readFileSync(userSettingsPath, 'utf8'));
-      return settings.hooks && Array.isArray(settings.hooks.PreToolUse) && settings.hooks.PreToolUse.length > 0;
+      return settings.hooks && (
+        (Array.isArray(settings.hooks.PermissionRequest) && settings.hooks.PermissionRequest.length > 0) ||
+        (Array.isArray(settings.hooks.PreToolUse) && settings.hooks.PreToolUse.length > 0)
+      );
     } catch (e) {
       return false;
     }
@@ -176,9 +179,9 @@ async function main() {
 
     case 'hook': {
       const event = argv[1];
-      if (event === 'pretooluse') {
+      if (event === 'permissionrequest') {
         const data = await readStdinJson();
-        await claudeHooksService.handlePreToolUse(data);
+        await claudeHooksService.handlePermissionRequest(data);
       } else if (event === 'stop') {
         const data = await readStdinJson();
         await claudeHooksService.handleStop(data);

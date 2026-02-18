@@ -1,76 +1,76 @@
 {
-  "name": "@probelabs/afk",
-  "version": "0.6.0",
-  "description": "Universal AI integration platform: Remote approval for any AI system via Telegram. Supports Python, Node.js, bash and more.",
-  "bin": {
-    "afk": "bin/afk"
-  },
-  "scripts": {
-    "test": "./test/run-tests.sh",
-    "test:all": "./test/run-tests.sh",
-    "test:working": "./test/run-tests.sh",
-    "test:core": "npm run test:permissions && npm run test:integration && npm run test:runtime && npm run test:syntax",
-    "test:features": "npm run test:diff && npm run test:session && npm run test:telegram",
-    "test:permissions": "node test/test-permissions.js",
-    "test:integration": "node test/test-integration.js",
-    "test:runtime": "node test/test-runtime.js",
-    "test:diff": "node test/test-diff-generation.js",
-    "test:session": "node test/test-session-management.js",
-    "test:telegram": "node test/test-telegram-integration.js",
-    "test:hooks": "echo 'Hook integration tests are temporarily disabled due to 8 failing tests' && node test/test-hook-integration.js",
-    "test:hooks:force": "node test/test-hook-integration.js",
-    "test:syntax": "node -c bin/afk",
-    "test:quick": "npm run test:syntax && npm run test:permissions",
-    "test:ci": "./test/run-tests.sh",
-    "prepublishOnly": "npm test",
-    "version": "git add -A .",
-    "postversion": "git push && git push --tags",
-    "deploy:site": "cd site && npx wrangler pages deploy . --project-name=afk-site --commit-dirty=true",
-    "deploy:worker": "npx wrangler deploy"
-  },
-  "type": "commonjs",
-  "author": "Leonid Bugaev",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/probelabs/afk.git"
-  },
-  "bugs": {
-    "url": "https://github.com/probelabs/afk/issues"
-  },
-  "homepage": "https://afk-site.pages.dev",
-  "keywords": [
-    "claude",
-    "claude-code",
-    "telegram",
-    "bot",
-    "remote-control",
-    "approval",
-    "afk",
-    "cli",
-    "ai-integration",
-    "universal-ai",
-    "python-ai",
-    "nodejs-ai",
-    "bash-integration",
-    "subprocess"
-  ],
-  "files": [
-    "bin/**/*",
-    "lib/**/*",
-    "examples/**/*",
-    "scripts/**/*",
-    "test/**/*",
-    "README.md",
-    "INTEGRATION.md",
-    "LICENSE",
-    "CHANGELOG.md"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "dependencies": {}
+    "name": "@probelabs/afk",
+    "version": "0.6.0",
+    "description": "Universal AI integration platform: Remote approval for any AI system via Telegram. Supports Python, Node.js, bash and more.",
+    "bin": {
+        "afk": "bin/afk"
+    },
+    "scripts": {
+        "test": "./test/run-tests.sh",
+        "test:all": "./test/run-tests.sh",
+        "test:working": "./test/run-tests.sh",
+        "test:core": "npm run test:permissions && npm run test:integration && npm run test:runtime && npm run test:syntax",
+        "test:features": "npm run test:diff && npm run test:session && npm run test:telegram",
+        "test:permissions": "node test/test-permissions.js",
+        "test:integration": "node test/test-integration.js",
+        "test:runtime": "node test/test-runtime.js",
+        "test:diff": "node test/test-diff-generation.js",
+        "test:session": "node test/test-session-management.js",
+        "test:telegram": "node test/test-telegram-integration.js",
+        "test:hooks": "echo 'Hook integration tests are temporarily disabled due to 8 failing tests' && node test/test-hook-integration.js",
+        "test:hooks:force": "node test/test-hook-integration.js",
+        "test:syntax": "node -c bin/afk",
+        "test:quick": "npm run test:syntax && npm run test:permissions",
+        "test:ci": "./test/run-tests.sh",
+        "prepublishOnly": "npm test",
+        "version": "git add -A .",
+        "postversion": "git push && git push --tags",
+        "deploy:site": "cd site && npx wrangler pages deploy . --project-name=afk-site --commit-dirty=true",
+        "deploy:worker": "npx wrangler deploy"
+    },
+    "type": "commonjs",
+    "author": "Leonid Bugaev",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/probelabs/afk.git"
+    },
+    "bugs": {
+        "url": "https://github.com/probelabs/afk/issues"
+    },
+    "homepage": "https://afk-site.pages.dev",
+    "keywords": [
+        "claude",
+        "claude-code",
+        "telegram",
+        "bot",
+        "remote-control",
+        "approval",
+        "afk",
+        "cli",
+        "ai-integration",
+        "universal-ai",
+        "python-ai",
+        "nodejs-ai",
+        "bash-integration",
+        "subprocess"
+    ],
+    "files": [
+        "bin/**/*",
+        "lib/**/*",
+        "examples/**/*",
+        "scripts/**/*",
+        "test/**/*",
+        "README.md",
+        "INTEGRATION.md",
+        "LICENSE",
+        "CHANGELOG.md"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "dependencies": {}
 }
