@@ -7,9 +7,9 @@ const os = require('os');
 const path = require('path');
 
 // Core modules
-const { ConfigManager, readMode, writeMode, modeCmd, cfg } = require('../lib/core/config');
-const { Logger, isDebugEnabled, debugLog, eprint } = require('../lib/core/logger');
-const { Utils, ensureDir, ensureExecutable, toPosix } = require('../lib/core/utils');
+const { ConfigManager } = require('../lib/core/config');
+const { Logger } = require('../lib/core/logger');
+const { Utils } = require('../lib/core/utils');
 
 // Service modules
 const { TelegramService } = require('../lib/services/telegram');
@@ -34,6 +34,8 @@ const USER_CFG_DIR = path.join(HOME, '.config', 'afk');
 // ---------------------------
 const configManager = new ConfigManager();
 const logger = new Logger(configManager.configDir);
+const debugLog = logger.debugLog.bind(logger);
+const eprint = logger.eprint.bind(logger);
 const utils = Utils; // Utils is a class with static methods, not an instance
 const telegramService = new TelegramService(configManager, logger);
 const permissionsService = new PermissionsService(configManager, logger);
@@ -102,7 +104,8 @@ async function main() {
       return;
     }
     // If installed, act like toggle command
-    configManager.modeCommand('toggle', debugLog);
+    const mode = configManager.modeCommand('toggle', debugLog);
+    cliService.showModeExplanation(mode);
     return;
   }
 
@@ -162,7 +165,8 @@ async function main() {
     }
 
     case 'mode': {
-      configManager.modeCommand(argv[1] || 'status', debugLog);
+      const mode = configManager.modeCommand(argv[1] || 'status', debugLog);
+      cliService.showModeExplanation(mode);
       break;
     }
 
@@ -199,37 +203,14 @@ async function main() {
       break;
     }
 
-    case 'inbox': {
-      const subcmd = argv[1];
-      if (subcmd === 'wait') {
-        const sidIdx = argv.indexOf('--session');
-        const sessionId = sidIdx >= 0 ? argv[sidIdx + 1] : null;
-        const toIdx = argv.indexOf('--timeout');
-        const timeout = toIdx >= 0 ? Number(argv[toIdx + 1]) : 21600;
-        if (!sessionId) { 
-          eprint('inbox wait requires --session <id>'); 
-          process.exit(2); 
-        }
-        const result = promptsService.waitForInboxEvent({ sessionId, kinds: ['reply','continue'], timeout });
-        if (result) {
-          console.log(JSON.stringify(result));
-        } else {
-          console.log('null');
-          process.exit(1);
-        }
-      } else {
-        cliService.showHelp();
-      }
-      break;
-    }
-
     case 'on':
     case 'off':
     case 'readonly':
     case 'toggle':
     case 'status': {
       // Direct mode commands: afk on, afk off, afk readonly, afk toggle, afk status
-      configManager.modeCommand(cmd, debugLog);
+      const mode = configManager.modeCommand(cmd, debugLog);
+      cliService.showModeExplanation(mode);
       break;
     }
 
