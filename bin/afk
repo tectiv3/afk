@@ -188,10 +188,6 @@ async function main() {
       } else if (event === 'sessionstart') {
         const data = await readStdinJson();
         await claudeHooksService.handleSessionStart(data);
-      } else if (event === 'userpromptsubmit') {
-        const data = await readStdinJson();
-        const result = await claudeHooksService.handleUserPromptSubmit(data);
-        process.stdout.write(JSON.stringify(result));
       } else {
         cliService.showHelp();
       }
