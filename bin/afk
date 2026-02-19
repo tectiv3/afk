@@ -205,11 +205,12 @@ async function main() {
 
     case 'on':
     case 'off':
+    case 'ro':
     case 'readonly':
     case 'toggle':
     case 'status': {
-      // Direct mode commands: afk on, afk off, afk readonly, afk toggle, afk status
-      const mode = configManager.modeCommand(cmd, debugLog);
+      // Direct mode commands: afk on, afk off, afk ro/readonly, afk toggle, afk status
+      const mode = configManager.modeCommand(cmd === 'ro' ? 'readonly' : cmd, debugLog);
       cliService.showModeExplanation(mode);
       break;
     }
