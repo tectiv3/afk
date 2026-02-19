@@ -22,7 +22,7 @@ AFK registers three Claude Code hooks:
 -   **Stop** — When Claude finishes a task, you get a notification with Reply/Finish buttons. Reply injects your message back into the conversation.
 -   **SessionStart** — When a new session starts, you can send initial instructions from Telegram.
 
-All communication goes directly between your machine and the Telegram Bot API. State is stored locally in `~/.afk/`.
+All communication goes directly between your machine and the Telegram Bot API. State is stored locally in `~/.config/afk/`.
 
 ## Commands
 
@@ -39,7 +39,7 @@ All communication goes directly between your machine and the Telegram Bot API. S
 ./bin/afk install      # Install Claude Code hooks
 ./bin/afk uninstall    # Remove hooks
 ./bin/afk telegram test   # Test Telegram connection
-./bin/afk debug on/off    # Toggle debug logging (~/.afk/debug.log)
+./bin/afk debug on/off    # Toggle debug logging (~/.config/afk/debug.log)
 ```
 
 ## Modes
@@ -61,7 +61,7 @@ Mode hierarchy: session > project > global.
 
 ## Configuration
 
-`~/.afk/config.json`:
+`~/.config/afk/config.json`:
 
 ```json
 {
@@ -87,7 +87,7 @@ Requires Node.js >= 18, Claude Code, and a Telegram account.
 git clone https://github.com/tectiv3/afk.git
 cd afk
 ./bin/afk setup
-./bin/afk install              # Copies to ~/.afk/ and installs hooks
+./bin/afk install              # Copies to ~/.config/afk/ and installs hooks
 ```
 
 Install hooks at different scopes:
@@ -101,7 +101,7 @@ Install hooks at different scopes:
 
 **No Telegram messages?** Check `afk status` and `afk telegram test`.
 
-**Buttons not working?** Check that only one polling instance is active. Enable debug logging with `afk debug on` and check `~/.afk/debug.log`.
+**Buttons not working?** Check that only one polling instance is active. Enable debug logging with `afk debug on` and check `~/.config/afk/debug.log`.
 
 **Hook errors in Claude Code?** Claude Code shows all hook stderr as "hook error". Most of these are informational (e.g. "Waiting for user response"). Enable debug mode for detailed logs.
 

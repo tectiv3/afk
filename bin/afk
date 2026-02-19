@@ -27,7 +27,7 @@ const { CLIService } = require('../lib/ui/cli');
 // Constants & paths
 // ---------------------------
 const HOME = os.homedir();
-const USER_CFG_DIR = path.join(HOME, '.afk');
+const USER_CFG_DIR = path.join(HOME, '.config', 'afk');
 
 // ---------------------------
 // Service initialization
